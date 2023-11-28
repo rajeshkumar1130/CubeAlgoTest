@@ -10,6 +10,9 @@ export default (props) => {
     cube.current.rotation.set((30 * Math.PI) / 180, (-45 * Math.PI) / 180, 0);
   useEffect(() => {
     if (props.case) {
+      if (cube.current.isSolved()) {
+          cube.current.twistQueue.history.length = 0;
+      }
       const hist = cube.current.twistQueue.history
         .map((x) =>
           x.command === x.command.toLowerCase()
@@ -63,6 +66,8 @@ export default (props) => {
         <div className=${style.controls}>
           <button
             onClick=${(e) => {
+              cube.current.twistQueue.history.length = 0;
+
               cube.current.twistDuration = speed;
               cube.current.twist(interpret(props.case.algs[0], true));
             }}
@@ -92,7 +97,6 @@ export default (props) => {
           </button>
             <button
             onClick=${(e) => {
-              debugger;
               const hist = cube.current.twistQueue.history
                   .map((x) =>
                       x.command === x.command.toLowerCase()
@@ -104,7 +108,10 @@ export default (props) => {
               cube.current.twistDuration = 50;
               cube.current.autoRotate = false;
               centerCube();
-              if (hist.length > 0) cube.current.shuffle(hist);
+              if (hist.length > 0) {
+                cube.current.shuffle(hist);
+                cube.current.twistQueue.history.length = 0;
+              }
               cube.current.twist(interpret(props.case.algs[0], true));
 
             }}
