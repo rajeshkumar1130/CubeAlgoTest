@@ -4,7 +4,7 @@ import { interpret } from './utils.js';
 export default (props) => {
   const container = useRef(null);
   const cube = useRef(new ERNO.Cube());
-  const [speed, setSpeed] = useState(200);
+  const [speed, setSpeed] = useState(0);
 
   const centerCube = () =>
     cube.current.rotation.set((30 * Math.PI) / 180, (-45 * Math.PI) / 180, 0);
@@ -21,7 +21,7 @@ export default (props) => {
         )
         .join('');
 
-      cube.current.twistDuration = 50;
+      cube.current.twistDuration = 0;
       cube.current.autoRotate = false;
       centerCube();
         if (hist.length > 0) cube.current.shuffle(hist);
@@ -105,7 +105,7 @@ export default (props) => {
                   )
                   .join('');
 
-              cube.current.twistDuration = 50;
+              cube.current.twistDuration = 0;
               cube.current.autoRotate = false;
               centerCube();
               if (hist.length > 0) {
