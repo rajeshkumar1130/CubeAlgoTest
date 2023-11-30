@@ -66,9 +66,21 @@ export default (props) => {
         <div className=${style.controls}>
           <button
             onClick=${(e) => {
-              cube.current.twistQueue.history.length = 0;
+              const hist = cube.current.twistQueue.history
+                  .map((x) =>
+                      x.command === x.command.toLowerCase()
+                          ? x.command.toUpperCase()
+                          : x.command.toLowerCase()
+                  )
+                  .join('');
 
-              cube.current.twistDuration = speed;
+              cube.current.twistDuration = 0;
+              cube.current.autoRotate = false;
+              centerCube();
+              if (hist.length > 0) {
+                cube.current.shuffle(hist);
+                cube.current.twistQueue.history.length = 0;
+              }
               cube.current.twist(interpret(props.case.algs[0], true));
             }}
           >
@@ -94,29 +106,6 @@ export default (props) => {
             }}
           >
             Execute
-          </button>
-            <button
-            onClick=${(e) => {
-              const hist = cube.current.twistQueue.history
-                  .map((x) =>
-                      x.command === x.command.toLowerCase()
-                          ? x.command.toUpperCase()
-                          : x.command.toLowerCase()
-                  )
-                  .join('');
-
-              cube.current.twistDuration = 0;
-              cube.current.autoRotate = false;
-              centerCube();
-              if (hist.length > 0) {
-                cube.current.shuffle(hist);
-                cube.current.twistQueue.history.length = 0;
-              }
-              cube.current.twist(interpret(props.case.algs[0], true));
-
-            }}
-          >
-            Reset
           </button>
         </div>
       `}

@@ -26,8 +26,18 @@ const item = (route, go, filterType) => (move, index) => html`
 export default (props) => {
   const [filterType, setFilterType] = useState('oll');
   console.log(filterType);
-    return html`
+  return html`
     <nav className=${style.nav}>
+      <div className=${style.filters}>
+        <button onClick=${(e) => {
+          e.preventDefault();
+          props.go(props.route+1);
+    }}>Next ${props.route >= 0 ? (props.route > 97 ? props.route - 96 : (props.route > 40 ? props.route - 39 : props.route+2)):''}</button>
+        <button onClick=${(e) => {
+          e.preventDefault();
+          props.go(props.route-1);
+        }}>Back</button>
+      </div>
       <div className=${style.filters}>
         <button onClick=${(e) => setFilterType('f2l')}>f2l</button>
         <button onClick=${(e) => setFilterType('oll')}>oll</button>
