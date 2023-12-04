@@ -13,7 +13,7 @@ const App = () => {
   let current = cases[route?route:41];
   return html`
     <${Cube} key="cube" case=${current} />
-    <${Nav} go=${go} route=${route} links=${cases} />
+    <${Nav} go=${go} route=${route?route:41} links=${cases} />
   `;
 };
 
