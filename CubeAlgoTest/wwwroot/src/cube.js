@@ -119,7 +119,7 @@ const style = {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100;
+    height: calc(var(--vh, 1vh) * 90);
     background: radial-gradient(#222, #111);
   `,
   canvas: css`
