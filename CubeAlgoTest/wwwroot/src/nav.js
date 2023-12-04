@@ -4,7 +4,7 @@ const imageForCase = (alg) => {
   let x = alg.replace(/ /g, '');
   if (alg.startsWith("x' ")) x = x + ' x';
   if (alg.startsWith('x ')) x = x + " x'";
-    return `http://cube.rider.biz/visualcube.php?fmt=svg&size=300&bg=t&sch=fdcc0a,dc422f,3d80f6,ffffff,ff6c00,009d53&case=${x}`;
+  return `https://visualcube.azurewebsites.net/visualcube.php?fmt=svg&size=300&bg=t&sch=fdcc0a,dc422f,3d80f6,ffffff,ff6c00,009d53&case=${x}`;
 };
 
 const item = (route, go, filterType) => (move, index) => html`
@@ -31,12 +31,12 @@ export default (props) => {
       <div className=${style.filters}>
         <button onClick=${(e) => {
           e.preventDefault();
-          props.go(props.route+1);
-    }}>Next ${props.route >= 0 ? (props.route > 97 ? props.route - 96 : (props.route > 40 ? props.route - 39 : props.route+2)):''}</button>
-        <button onClick=${(e) => {
-          e.preventDefault();
           props.go(props.route-1);
         }}>Back</button>
+        <button onClick=${(e) => {
+          e.preventDefault();
+          props.go(props.route+1);
+        }}>Next ${props.route >= 0 ? (props.route > 97 ? props.route - 96 : (props.route > 40 ? props.route - 39 : props.route+2)):''}</button>
       </div>
       <div className=${style.filters}>
         <button onClick=${(e) => setFilterType('f2l')}>f2l</button>
