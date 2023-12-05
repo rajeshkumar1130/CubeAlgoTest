@@ -36,7 +36,7 @@ export default (props) => {
         <button onClick=${(e) => {
           e.preventDefault();
           props.go(props.route+1);
-        }}>Next ${props.route >= 0 ? (props.route > 97 ? props.route - 96 : (props.route > 40 ? props.route - 39 : props.route+2)):''}</button>
+        }}>Next</button>
       </div>
       <div className=${style.filters}>
         <button onClick=${(e) => setFilterType('f2l')}>f2l</button>

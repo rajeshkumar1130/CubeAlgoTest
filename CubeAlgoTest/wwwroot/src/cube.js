@@ -49,7 +49,7 @@ export default (props) => {
         >
           ${props.case.algs[0]}
         </h1>
-        <p className=${style.group}>${props.case.group}</p>
+        <p className=${style.group}>${props.case.group} (${props.case.type} ${props.case.name})</p>
         <input
           className=${style.slider}
           key="speed"

@@ -10,10 +10,10 @@ document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 const App = () => {
   const [route, go] = useState(parseInt(location.search.slice(1)));
-  let current = cases[route?route:41];
+  let current = cases[route>=0?route:41];
   return html`
     <${Cube} key="cube" case=${current} />
-    <${Nav} go=${go} route=${route?route:41} links=${cases} />
+    <${Nav} go=${go} route=${route>=0?route:41} links=${cases} />
   `;
 };
 
